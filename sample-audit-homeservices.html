@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Workflow Audit | HVAC &amp; Plumbing Lead Recovery | Agentic Workflow Studio</title>
+    <meta name="description" content="See what a workflow audit looks like for an HVAC/plumbing company." />
+    <style>
+        :root{--ink:#17201d;--muted:#5f6964;--paper:#fbfaf6;--line:#d8ded6;--sage:#2f6f5e;--teal:#0f8b8d;--coral:#d96c4f;--gold:#e5a946;--blue:#314b7d;--white:#fff;--shadow-sm:0 4px 16px rgba(23,32,29,.05);--shadow-md:0 8px 30px rgba(23,32,29,.08);--radius:10px;--ease:cubic-bezier(.25,.46,.45,.94)}
+        *{box-sizing:border-box}html{scroll-behavior:smooth}
+        body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;line-height:1.6}
+        a{color:var(--teal)}
+
+        .rh{background:var(--ink);color:var(--white);padding:48px 20px 56px}
+        .rh-inner{width:min(840px,calc(100% - 40px));margin:0 auto}
+        .rb-link{display:inline-flex;align-items:center;gap:10px;margin-bottom:36px;color:var(--white);text-decoration:none;font-weight:800;font-size:15px}
+        .rb-mark{display:grid;width:30px;height:30px;place-items:center;border:1px solid rgba(255,255,255,.32);border-radius:8px;background:rgba(255,255,255,.1);font-size:12px}
+        .sample-badge{display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;padding:6px 14px;border-radius:999px;background:rgba(229,169,70,.16);color:var(--gold);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+        .rmeta{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:24px}
+        .rmeta-item{display:flex;flex-direction:column;gap:2px}
+        .rmeta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.48)}
+        .rmeta-val{font-size:15px;color:rgba(255,255,255,.88)}
+        .rh h1{margin:0 0 10px;font-size:clamp(28px,5vw,40px);font-weight:850;line-height:1.1}
+        .rh .sub{margin:0;color:rgba(255,255,255,.6);font-size:17px}
+
+        .rb{width:min(840px,calc(100% - 40px));margin:0 auto;padding:56px 0 80px}
+        .rs{margin-bottom:56px}.rs:last-child{margin-bottom:0}
+        .sl{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;color:var(--coral);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.05em}
+        .sl::before{content:"";width:20px;height:2px;border-radius:2px;background:var(--coral)}
+        h2{margin:0 0 16px;font-size:26px;font-weight:800;line-height:1.15}
+        h3{margin:0 0 10px;font-size:19px;font-weight:800}
+        p{margin:0 0 14px;color:var(--muted);font-size:15px}
+
+        .og{display:grid;gap:14px;margin:24px 0}
+        .oc{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;background:var(--white);box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+        .oc:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .oc h3{margin:0 0 6px;font-size:17px}.oc p{margin:0;font-size:14px}
+        .om{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+        .pill{border-radius:999px;padding:6px 12px;font-size:11px;font-weight:850;white-space:nowrap}
+        .pill.hi{background:rgba(217,108,79,.12);color:var(--coral)}
+        .pill.md{background:rgba(229,169,70,.14);color:#c08f2f}
+        .pill.lo{background:rgba(47,111,94,.1);color:var(--sage)}
+        .il{font-size:11px;color:var(--muted);text-align:right}
+
+        .wm{border:1px solid var(--line);border-radius:var(--radius);background:var(--white);box-shadow:var(--shadow-sm);overflow:hidden;margin:24px 0}
+        .wm-h{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);background:#f7f9f6}
+        .wm-h strong{font-size:14px}.wm-h span{font-size:12px;color:var(--muted)}
+        .ws{padding:22px}
+        .wst{display:flex;gap:16px;padding:14px 0}
+        .wst:not(:last-child){border-bottom:1px dashed var(--line)}
+        .sn{display:grid;width:32px;height:32px;flex-shrink:0;place-items:center;border-radius:8px;background:var(--sage);color:var(--white);font-size:13px;font-weight:850}
+        .sd h4{margin:0 0 4px;font-size:15px;font-weight:750}
+        .sd p{margin:0;font-size:13px;color:var(--muted)}
+        .st{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700}
+        .st.auto{background:rgba(15,139,141,.1);color:var(--teal)}
+        .st.human{background:rgba(229,169,70,.12);color:#b8882a}
+
+        .et{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+        .et th,.et td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
+        .et th{background:#f7f9f6;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+        .et td{color:var(--ink)}.et tr:last-child td{border-bottom:none;font-weight:800}
+
+        .rec{border:2px solid var(--sage);border-radius:var(--radius);padding:28px;background:rgba(47,111,94,.04);margin:24px 0}
+        .rec h3{color:var(--sage);margin:0 0 10px}.rec p{margin:0 0 8px}.rec p:last-child{margin:0}
+        .rec ul{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:15px}.rec li{margin-bottom:6px}
+
+        .rcta{text-align:center;padding:48px 20px;border-top:1px solid var(--line);margin-top:56px}
+        .rcta h2{max-width:500px;margin:0 auto 12px}.rcta p{max-width:480px;margin:0 auto 24px}
+        .btn{display:inline-flex;min-height:48px;align-items:center;justify-content:center;border:1px solid transparent;border-radius:var(--radius);padding:13px 22px;font-size:15px;font-weight:800;text-decoration:none;cursor:pointer;background:var(--gold);color:#1b160d;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+        .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15);background:#d49a38}
+
+        .rf{padding:24px 20px;text-align:center;background:var(--ink);color:rgba(255,255,255,.4);font-size:13px}
+        .rf a{color:rgba(255,255,255,.6)}
+
+        @media(max-width:600px){.rmeta{flex-direction:column;gap:14px}.oc{grid-template-columns:1fr}.om{flex-direction:row;align-items:center}.et{font-size:13px}.et th,.et td{padding:10px 12px}}
+    </style>
+</head>
+<body>
+    <header class="rh">
+        <div class="rh-inner">
+            <a class="rb-link" href="index.html"><span class="rb-mark">AI</span><span>Agentic Workflow Studio</span></a>
+            <span class="sample-badge">📋 Sample Report</span>
+            <div class="rmeta">
+                <div class="rmeta-item"><span class="rmeta-label">Company</span><span class="rmeta-val">Desert Air Plumbing &amp; HVAC</span></div>
+                <div class="rmeta-item"><span class="rmeta-label">Location</span><span class="rmeta-val">Phoenix, AZ</span></div>
+                <div class="rmeta-item"><span class="rmeta-label">Report Type</span><span class="rmeta-val">Lead Recovery Audit</span></div>
+                <div class="rmeta-item"><span class="rmeta-label">Date</span><span class="rmeta-val">May 2026</span></div>
+            </div>
+            <h1>Workflow Audit: Lead Response &amp; Follow-Up Opportunities</h1>
+            <p class="sub">An assessment of lead intake and follow-up gaps that may benefit from AI-assisted workflows with team oversight.</p>
+        </div>
+    </header>
+
+    <main class="rb">
+        <!-- Company Snapshot -->
+        <section class="rs">
+            <p class="sl">Company Snapshot</p>
+            <h2>What we found from public information</h2>
+            <p>Desert Air Plumbing &amp; HVAC is a local, family-owned plumbing and HVAC company serving the Phoenix metro area. The company offers 24/7 emergency service, online scheduling, free estimates, and same-day appointments. The website promotes call, text, and form-based intake channels.</p>
+            <p>Based on the service mix, 24/7 availability, and multiple intake channels, the company likely experiences high call volume, after-hours inquiries, and unbooked estimates that compete for limited office staff time.</p>
+        </section>
+
+        <!-- Identified Opportunities -->
+        <section class="rs">
+            <p class="sl">Identified Opportunities</p>
+            <h2>Revenue-critical tasks that fall through the cracks</h2>
+            <p>These are common lead response and follow-up gaps seen in HVAC and plumbing companies with a similar profile.</p>
+            <div class="og">
+                <div class="oc"><div><h3>Missed-call recovery</h3><p>Calls that go to voicemail during peak hours, after hours, or when techs are on-site. Each missed call is a potential job that may go to a competitor if there's no fast response.</p></div><div class="om"><span class="pill hi">High impact</span><span class="il">Revenue recovery</span></div></div>
+                <div class="oc"><div><h3>Quote request follow-up</h3><p>Customers who requested an estimate via the website or phone but never booked. Without consistent follow-up, these warm leads go cold within 24-48 hours.</p></div><div class="om"><span class="pill hi">High impact</span><span class="il">Conversion</span></div></div>
+                <div class="oc"><div><h3>After-hours lead capture</h3><p>Late-night and weekend inquiries from the website, voicemail, or text that sit unprocessed until Monday morning. Fast acknowledgment keeps the customer engaged.</p></div><div class="om"><span class="pill md">Medium impact</span><span class="il">Schedule fill</span></div></div>
+                <div class="oc"><div><h3>Maintenance plan &amp; repeat service nurture</h3><p>Past customers who haven't been contacted about seasonal maintenance, equipment check-ups, or annual service plans. Recurring revenue left on the table.</p></div><div class="om"><span class="pill lo">Steady value</span><span class="il">Retention</span></div></div>
+                <div class="oc"><div><h3>Post-job review &amp; referral requests</h3><p>Completed jobs where no review or referral was requested. A timely follow-up drives Google reviews and word-of-mouth without extra office effort.</p></div><div class="om"><span class="pill lo">Steady value</span><span class="il">Growth</span></div></div>
+            </div>
+        </section>
+
+        <!-- Recommended Pilot -->
+        <section class="rs">
+            <p class="sl">Recommended Pilot Workflow</p>
+            <h2>Start here: Missed-call text-back &amp; quote follow-up</h2>
+            <p>We recommend starting with missed-call recovery because it has immediate revenue impact, clear triggers, and a simple workflow that doesn't require system integrations to start.</p>
+            <div class="wm">
+                <div class="wm-h"><strong>Missed-Call &amp; Quote Follow-Up Workflow</strong><span>Pilot design</span></div>
+                <div class="ws">
+                    <div class="wst"><span class="sn">1</span><div class="sd"><h4>Detect missed call or new form submission</h4><p>Call tracking or website form logs a missed call, voicemail, or quote request. Agent is notified of the new lead.</p><span class="st auto">⚡ Agent-assisted</span></div></div>
+                    <div class="wst"><span class="sn">2</span><div class="sd"><h4>Send fast text-back acknowledgment</h4><p>Within minutes, a pre-approved text goes out: "Hi, this is Desert Air. We saw we missed your call — how can we help?" Uses owner-approved templates only.</p><span class="st auto">⚡ Agent-assisted</span></div></div>
+                    <div class="wst"><span class="sn">3</span><div class="sd"><h4>Qualify and categorize the lead</h4><p>Agent logs the service type, urgency, and preferred contact method. Emergency requests are flagged immediately for dispatch.</p><span class="st auto">⚡ Agent-assisted</span></div></div>
+                    <div class="wst"><span class="sn">4</span><div class="sd"><h4>Route to office or dispatcher</h4><p>Qualified leads are routed to the right person with a summary. Office handles scheduling, pricing, and customer conversations.</p><span class="st human">👤 Staff action</span></div></div>
+                    <div class="wst"><span class="sn">5</span><div class="sd"><h4>Follow up on unbooked estimates</h4><p>If a quoted lead doesn't book within 24-48 hours, agent drafts a follow-up for staff review: "Still need help with that AC repair?"</p><span class="st auto">⚡ Agent-assisted</span></div></div>
+                    <div class="wst"><span class="sn">6</span><div class="sd"><h4>Track and report lead outcomes</h4><p>Agent logs lead status (booked, pending, lost, no response) in a simple sheet. Weekly summary shows response time, conversion rate, and missed opportunities.</p><span class="st human">👤 Staff reviews</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Estimate -->
+        <section class="rs">
+            <p class="sl">Impact Estimate</p>
+            <h2>Conservative scenario for a local HVAC &amp; plumbing company</h2>
+            <p>Directional estimates based on industry benchmarks for service companies in metro markets. Actual results depend on call volume, response speed, and team execution.</p>
+            <table class="et">
+                <thead><tr><th>Metric</th><th>Estimate</th></tr></thead>
+                <tbody>
+                    <tr><td>Monthly inbound leads (calls, forms, texts)</td><td>120 – 300</td></tr>
+                    <tr><td>Estimated missed or slow-response leads (20-35%)</td><td>24 – 105</td></tr>
+                    <tr><td>Recovery rate with fast text-back + follow-up</td><td>15 – 25%</td></tr>
+                    <tr><td>Additional jobs booked per month</td><td>4 – 26</td></tr>
+                    <tr><td>Average job value (service call + repair)</td><td>$250 – $800</td></tr>
+                    <tr><td>Estimated recovered revenue per month</td><td>$1,000 – $20,800</td></tr>
+                </tbody>
+            </table>
+            <p>Even at the low end, recovering a handful of jobs per month from leads that were already coming in pays for the workflow many times over — without additional advertising.</p>
+        </section>
+
+        <!-- Trust -->
+        <section class="rs">
+            <p class="sl">Trust Boundaries</p>
+            <h2>How the workflow stays under your control</h2>
+            <div class="og">
+                <div class="oc"><div><h3>Owner-approved messaging</h3><p>Every text template and follow-up script is written by you or approved by you before it's used. No messages go out without your sign-off.</p></div><div class="om"><span class="pill lo">Your words</span></div></div>
+                <div class="oc"><div><h3>Human handles all booking</h3><p>The agent qualifies and routes. Your office or dispatcher handles pricing, scheduling, and customer conversations.</p></div><div class="om"><span class="pill lo">Staff control</span></div></div>
+                <div class="oc"><div><h3>No system access needed to start</h3><p>The pilot can run with call logs, form exports, or a simple tracking sheet. Deep integrations come later if they make sense.</p></div><div class="om"><span class="pill lo">Lightweight start</span></div></div>
+            </div>
+        </section>
+
+        <!-- Recommendation -->
+        <section class="rs">
+            <p class="sl">Recommendation</p>
+            <h2>Suggested next steps</h2>
+            <div class="rec">
+                <h3>Start with a 15-minute discovery call</h3>
+                <p>We walk through your current intake process, identify where leads are falling through, and decide if a pilot workflow makes sense.</p>
+                <ul>
+                    <li>Map your current call, text, and form intake flow</li>
+                    <li>Identify the biggest response-time gap</li>
+                    <li>Define the pilot: text-back templates, follow-up timing, routing rules</li>
+                    <li>Agree on a 2-week test with clear metrics (response time, jobs booked)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="rcta">
+            <h2>Want a report like this for your company?</h2>
+            <p>Request a free workflow audit and we'll identify the lead recovery opportunities specific to your business.</p>
+            <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeWAHwl-_KYzBKDQe9SvyiYAe1c8aSz6zEODkNqyRisbncPgQ/viewform?usp=header" target="_blank" rel="noopener">Request a workflow audit</a>
+        </div>
+    </main>
+
+    <footer class="rf">
+        <span>&copy; 2026 Agentic Workflow Studio · <a href="index.html">Home</a> · <a href="homeservices.html">Home Services</a></span>
+    </footer>
+</body>
+</html>
